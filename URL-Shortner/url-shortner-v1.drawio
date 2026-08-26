@@ -1,6 +1,6 @@
 <mxfile host="65bd71144e">
     <diagram id="hKe19DG2okSJERkCPkz_" name="Page-1">
-        <mxGraphModel dx="1396" dy="677" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0">
+        <mxGraphModel dx="1211" dy="812" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="0" pageScale="1" pageWidth="1920" pageHeight="1200" math="0" shadow="0">
             <root>
                 <mxCell id="0"/>
                 <mxCell id="1" parent="0"/>
@@ -42,8 +42,8 @@
                 <mxCell id="13" value="&lt;b&gt;Tech Stack&lt;/b&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;fontSize=18;" vertex="1" parent="1">
                     <mxGeometry x="-20" y="953" width="120" height="40" as="geometry"/>
                 </mxCell>
-                <mxCell id="14" value="&lt;ol&gt;&lt;li&gt;Frontend - Next.js&lt;/li&gt;&lt;li&gt;URL Server - GoFiber&lt;/li&gt;&lt;li&gt;&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
-                    <mxGeometry x="-30" y="1000" width="180" height="100" as="geometry"/>
+                <mxCell id="14" value="&lt;ol&gt;&lt;li&gt;Frontend - Next.js&lt;/li&gt;&lt;li&gt;URL Server - GoFiber&lt;/li&gt;&lt;li&gt;Hot Link Cron Job - Python&lt;/li&gt;&lt;/ol&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+                    <mxGeometry x="-45" y="1000" width="210" height="100" as="geometry"/>
                 </mxCell>
                 <mxCell id="15" value="URL Server" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
                     <mxGeometry x="360" y="630" width="120" height="65" as="geometry"/>
