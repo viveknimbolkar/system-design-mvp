@@ -1,0 +1,117 @@
+{
+  "title": "Load Balancing Lab",
+  "uid": "lb-lab",
+  "timezone": "browser",
+  "refresh": "5s",
+  "time": { "from": "now-15m", "to": "now" },
+  "schemaVersion": 39,
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Requests/sec arriving at nginx vs reaching backends",
+      "gridPos": { "h": 9, "w": 16, "x": 0, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": {
+        "defaults": { "unit": "reqps", "custom": { "fillOpacity": 10 } },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "rate(nginx_http_requests_total[30s])",
+          "legendFormat": "arrived at nginx"
+        },
+        {
+          "refId": "B",
+          "expr": "sum(rate(app_requests_total[30s]))",
+          "legendFormat": "reached backends"
+        },
+        {
+          "refId": "C",
+          "expr": "rate(nginx_http_requests_total[30s]) - sum(rate(app_requests_total[30s]))",
+          "legendFormat": "shed by rate limiter"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Backend health",
+      "gridPos": { "h": 9, "w": 8, "x": 16, "y": 0 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": {
+        "defaults": {
+          "mappings": [
+            { "type": "value", "options": { "0": { "text": "DOWN", "color": "red" }, "1": { "text": "UP", "color": "green" } } }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              { "color": "red", "value": null },
+              { "color": "green", "value": 1 }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "options": { "colorMode": "background", "textMode": "value_and_name" },
+      "targets": [
+        { "refId": "A", "expr": "app_healthy", "legendFormat": "{{server}}", "instant": true }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Requests/sec per backend (this is your load balancing)",
+      "gridPos": { "h": 9, "w": 12, "x": 0, "y": 9 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": {
+        "defaults": { "unit": "reqps", "custom": { "fillOpacity": 10 } },
+        "overrides": []
+      },
+      "targets": [
+        { "refId": "A", "expr": "rate(app_requests_total[30s])", "legendFormat": "{{server}}" }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "In-flight requests per backend (drives least_conn)",
+      "gridPos": { "h": 9, "w": 12, "x": 12, "y": 9 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": {
+        "defaults": { "custom": { "fillOpacity": 10 } },
+        "overrides": []
+      },
+      "targets": [
+        { "refId": "A", "expr": "app_active_requests", "legendFormat": "{{server}}" }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "nginx connections",
+      "gridPos": { "h": 8, "w": 12, "x": 0, "y": 18 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": { "defaults": {}, "overrides": [] },
+      "targets": [
+        { "refId": "A", "expr": "nginx_connections_active", "legendFormat": "active" },
+        { "refId": "B", "expr": "nginx_connections_waiting", "legendFormat": "waiting (keepalive idle)" },
+        { "refId": "C", "expr": "nginx_connections_writing", "legendFormat": "writing" }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Share of traffic per backend (%)",
+      "gridPos": { "h": 8, "w": 12, "x": 12, "y": 18 },
+      "datasource": { "type": "prometheus", "uid": "prom" },
+      "fieldConfig": {
+        "defaults": { "unit": "percent", "max": 100, "min": 0 },
+        "overrides": []
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "100 * rate(app_requests_total[1m]) / on() group_left() sum(rate(app_requests_total[1m]))",
+          "legendFormat": "{{server}}"
+        }
+      ]
+    }
+  ]
+}
