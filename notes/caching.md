@@ -78,12 +78,12 @@ Cache memory is limited. What happens when cache becomes full? When cache is ful
 5. Random
 6. ARC
 
-**1.LRU (Least Recently Used)** - Remove the item that hasn't been used for the longest time.\
-**2.LFU (Least Frequently Used)** - Remove data used the least number of times.\
-**3. FIFO (First In First Out)** - Remove oldest data first. Just like a queue.\
-**MRU (Most Recently Used)** - Opposite of LRU. Remove the most recently used item.\
-**5. Random Replacement** - Remove a random item.\
-**6. ARC (Adaptive Replacement Cache)** - Combines LRU + LFU behavior.\
+**1.LRU (Least Recently Used)** - Remove the item that hasn't been used for the longest time\
+**2.LFU (Least Frequently Used)** - Remove data used the least number of times\
+**3. FIFO (First In First Out)** - Remove oldest data first. Just like a queue\
+**MRU (Most Recently Used)** - Opposite of LRU. Remove the most recently used item\
+**5. Random Replacement** - Remove a random item\
+**6. ARC (Adaptive Replacement Cache)** - Combines LRU + LFU behavior\
 
 
 
